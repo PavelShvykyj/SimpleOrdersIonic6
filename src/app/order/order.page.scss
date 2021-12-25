@@ -1,0 +1,62 @@
+ion-slides {
+    height: 100%;
+  }
+
+ion-slide {
+  flex-direction: column;
+  justify-content: start;
+  
+}
+
+ion-list {
+    width: 100%;
+    overflow-y: auto;
+    //height: 90%;
+}
+
+.pl {
+  padding-left: 12px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.ml {
+  margin-left: 8px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.my-5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.text-smaller {
+  font-size: smaller;
+}
+
+.text-smallx {
+  font-size: x-small;
+}
+
+.text-accent {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.fab {
+  // opacity: 50%;
+  padding:  5px !important;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+
+}
+
+.foolhight {
+  height: 100% !important;
+}

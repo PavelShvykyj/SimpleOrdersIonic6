@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Addons</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+      <ion-thumbnail slot="end">
+        <img src="../../../assets/logo.png">
+      </ion-thumbnail>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    
+    <ion-item>
+      <ion-label>Device {{ gajet }} </ion-label>
+    </ion-item>
+
+    
+    <ion-list-header class="ion-text-center">
+      <ion-label>connection</ion-label>
+    </ion-list-header>
+    
+ 
+    <ng-container *ngIf="netState$ | async as netState">
+      <ion-item>
+        <ion-label color='danger'>{{netState.IP}} </ion-label>
+        <ion-buttons slot="end">
+          <ion-button (click)="RefreshIP()">
+            <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+
+
+
+      
+      <ion-item>
+        <ion-label>{{netState.ServerPingTry | date:'mediumTime' }} </ion-label>
+      </ion-item>
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label>{{netState.ServerPingAnswer}} </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="WievString(netState.ServerPingAnswer)">
+            <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+
+    </ng-container>
+
+
+
+
+    <ion-list-header class="ion-text-center">
+      <ion-label>local db keys</ion-label>
+    </ion-list-header>
+
+    <ng-container *ngIf="keys$ | async as keys">
+      <ion-item-sliding *ngFor="let key of keys">
+        <ion-item>
+          <ion-label> {{key}} </ion-label>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="Clear(key)">
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-item-option>
+          <ion-item-option (click)="Wiev(key)">
+            <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ng-container>
+
+
+
+  </ion-list>
+
+  <ion-list>
+
+    <ion-list-header class="ion-text-center">
+      <ion-label>measure</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label color='danger'>refresh measure </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="Measure()">
+          <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+
+    <ion-item *ngFor="let item of measure">
+      <ion-label [color]="item.res ? 'primary' : 'danger'" > {{item.duration}}  </ion-label>
+    </ion-item>
+
+
+
+  </ion-list>
+
+</ion-content>

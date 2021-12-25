@@ -1,0 +1,23 @@
+  <!-- toolbar -->
+  <div *ngIf="toolbarcommands.length > 0">
+        <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment-button *ngFor="let command of toolbarcommands" [value]="command.commandName"
+            (click)="ToolbarCommandClicked(command.commandName)">
+              <ion-icon slot="stat" [name]="command.iconeName"></ion-icon>
+            </ion-segment-button>
+        </ion-segment>
+  </div>
+  
+  <ion-toolbar  class="lenta-container text-smaller" style="width: 100vw; ">
+    <!-- <ion-buttons class="w-100 pl-4 "> -->
+      <ion-button class="pr-4 text-smaller" fill="solid" slot="end" color='medium' *ngFor="let item of lenta"  (click)="ElementClicked(item)"> {{item.name }} </ion-button>
+      <ion-button class="pr-4 text-smaller" slot="end" fill="solid" color='medium' (click)="ElementClicked(undefined)"><ion-icon slot="icon-only" name="home-outline"></ion-icon></ion-button>
+      <div class="m-auto"></div>
+    <!-- </ion-buttons> -->
+  </ion-toolbar>  
+
+
+
+  
+  
+

@@ -1,0 +1,16 @@
+{
+  "appId": "simple.intellect.starter",
+  "appName": "SimpleOrders",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "FadeSplashScreenDuration" : 1000,
+      "SplashScreenDelay" : 30000,
+      "launchAutoHide": false,
+      "AutoHideSplashScreen" : false
+    }
+  },
+  "cordova": {}
+}

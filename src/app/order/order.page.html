@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar color='light'>
+    <ion-title class="text-smaller"> {{(hall$ | async).name }} / {{ table }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="primary" (click)="NextOrder(-1)">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="primary" (click)="NextOrder(0)">new</ion-button>
+      <ion-button color="primary" (click)="NextOrder(1)">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-thumbnail slot="end">
+      <img src="../../../assets/logo.png">
+    </ion-thumbnail>
+  </ion-toolbar>
+  <ion-toolbar color='light' *ngIf="totals">
+    <ion-title class="text-smaller" color='medium' slot="start">
+      <h6 class="my-5"> ver. {{version}} </h6>
+      <h6 class="my-5"><small>{{ lastGajet }}</small></h6>
+    </ion-title>
+    <ion-title class="text-smaller" color='primary' slot="end">
+      <h5 class="my-5"> Итого {{totals.summ}} </h5>
+      <ng-container *ngIf="totals.discountname">
+        <h5 class="text-smallx my-5">{{totals.discountname}}</h5>
+        <h5 class="text-smallx my-5"> Знижка {{totals.discountsumm}} </h5>
+      </ng-container>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ng-container *ngIf="items$ | async as items"> -->
+  <ion-list>
+    <!-- <ion-virtual-scroll #itemsvirtualscroll [items]="itemsview" approxItemHeight="85px" [trackBy]="trackByOrderitemFn" [itemHeight]="itemHeightFn"> -->
+    <!-- *ngFor="let item of itemsview; trackBy:trackByOrderitemFn" -->
+    <!-- *virtualItem="let item " -->
+    
+    <ion-item button *ngFor="let item of itemsview; trackBy:trackByOrderitemFn">
+      <ion-label button appDebounceClick (debounceClick)=OpenEditRowDialog(item) class="ion-text-wrap">
+        <p>{{item.quantityprint}} {{item.goodname}} </p>
+        <p>
+          <ion-text color="medium"> {{itemsview.indexOf(item)}} \ </ion-text>
+          <ion-text color="medium"> {{item.price}} \ </ion-text>
+          <ion-text color="dark"> {{item.summ}}</ion-text>
+          <span class="text-accent">
+            <ion-icon color="danger" *ngIf="item.isexcise" class="pl" slot="start" name="cash-outline"></ion-icon>
+            <ion-icon color="danger" *ngIf="item.quantityprint != item.quantity" class="pl" slot="start"
+              name="print-outline"></ion-icon>
+            <ion-icon color="danger" *ngIf="item.isprecheck" class="pl" slot="start" name="close-outline"></ion-icon>
+            <ion-icon color="danger" *ngIf="item.isChanged" class="pl" slot="start" name="pencil-outline"></ion-icon>
+            <ion-icon color="danger" *ngIf="item.isCanceled" class="pl" slot="start" name="close-circle-outline">
+            </ion-icon>
+          </span>
+        </p>
+      </ion-label>
+      <ion-note class="ml pt-10" slot="end">
+        <h5>
+          <ion-buttons>
+            <ion-button [disabled]="item.isCanceled || !localAccesAllowed" (click)=AddQountity(1,item,$event)
+              size='small' slot='icon-only'>
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+            {{item.quantity}}
+            <ion-button [disabled]="item.isCanceled || !localAccesAllowed" (click)=AddQountity(-1,item,$event)
+              size='small' slot='icon-only'>
+              <ion-icon name="remove-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </h5>
+      </ion-note>
+      <ion-checkbox #el class="ml-10"
+        [checked]="item.isSelected == undefined ? false : item.isSelected"
+        (ionChange)=OnItemSelected(item,el.checked)
+        slot="end">
+      </ion-checkbox>
+    </ion-item>
+    <!-- </ion-virtual-scroll> -->
+  </ion-list>
+  <!-- </ng-container>  -->
+
+  <ion-infinite-scroll #infinitescroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines-small"
+    loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color='light'>
+    <ion-buttons slot="start">
+      <!-- перенесено в действия открываем через диалог
+        <ion-nav-link [component]="AnketaComp" router-direction='forward' componentProps='{}'>
+        <ion-button>анкета</ion-button>
+      </ion-nav-link> -->
+      <ion-nav-link [hidden]="!localAccesAllowed" #navlinkmenu [component]="MenuComp" router-direction='forward'
+        [componentProps]="MenuProps">
+        <ion-button>меню</ion-button>
+      </ion-nav-link>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="ShowActions()" class="text-accent rotate-180" size='large' expand='block' color='primary'>
+        <ion-icon name="keypad-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)=" GoBack()" class="text-accent" size='large' expand='block' color='danger'>
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+      <ion-button [hidden]="!localAccesAllowed" (click)="OnOrderActionClick('Печать'); GoBack()" class="text-accent" size='large' color='success'>
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

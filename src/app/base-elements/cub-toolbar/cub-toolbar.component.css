@@ -1,0 +1,29 @@
+/* ion-buttons {
+    height: 100%;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: auto;
+} */
+
+.text-smaller {
+    font-size: smaller;
+}
+
+.pl-4 {
+    padding-left: 4px;
+}
+
+.pr-4 {
+    padding-right: 4px;
+}
+
+.w-100 {
+    width: 100%;
+    max-width: 100%;
+}
+
+.m-auto {
+    margin: auto !important;
+}
+
+

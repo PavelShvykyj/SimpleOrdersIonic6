@@ -1,0 +1,44 @@
+<ion-header [translucent]="true" >
+  
+  <ion-toolbar color='light'>
+    <ion-title color='medium' slot="end">
+      <small>ver. 1.0.5 </small> 
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu='mainSide' autoHide=true></ion-menu-button>
+    </ion-buttons>
+    <ion-thumbnail slot="end">
+      <img src="../../../assets/logo.png">
+    </ion-thumbnail>
+  </ion-toolbar>
+  <app-state></app-state>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-grid  >
+    <ion-row >
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-img src="../../../assets/LogoMainScreen.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row >
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item lines="none" ><ion-label class="ion-text-center" > Войдите для начала работы </ion-label> </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="spaser">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-button fill='solid' expand='block' color='primary' routerLink="/authtorisation"> Войти </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="spaser">
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-button fill='solid' expand='block' color='light'  appDebounceClick (debounceClick) ='PrepareToExit()'> Закрыть приложение </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

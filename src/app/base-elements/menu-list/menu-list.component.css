@@ -1,0 +1,62 @@
+
+
+ion-list {
+    overflow-y: auto;
+}
+
+
+.fab {
+    opacity: 50%;
+    padding:  5px !important;
+}
+
+
+.py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.ml {
+    margin-left: 8px;
+  }
+
+.ml-0 {
+    margin-left: 0px;    
+}  
+
+.pr-4 {
+    padding-right: 4px;
+}
+
+.mr-5 {
+    padding-right: 5px;
+}
+
+.pl-4 {
+    padding-left: 4px;
+} 
+
+.w-100 {
+    width: 100%;
+    max-width: 100%;
+}
+
+.text-accent {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.text-smaller {
+    font-size: smaller;
+}
+
+.text-accent-smaller {
+    font-size: smaller;
+    font-weight: bolder;
+}

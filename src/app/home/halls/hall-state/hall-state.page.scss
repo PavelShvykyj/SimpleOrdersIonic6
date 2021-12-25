@@ -1,0 +1,65 @@
+ion-row {
+    height: 150px;
+}
+
+ion-card {
+   
+    --min-height: 135px;
+    height: 135px;
+}
+
+ion-slides {
+    --min-height: 140px;
+    height: 140px;
+    max-width: 100%;
+}
+
+ion-slide {
+    --min-height: 140px;
+    height: 140px;
+    
+
+}
+
+// ion-card-content {
+//     padding: 5px !important;
+// }
+
+ion-card-header {
+    padding: 0px !important;
+}
+
+ion-card-content {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 10px;  
+}
+
+.pr-5 {
+    padding-right: 5px;
+}
+
+.text-small {
+    font-size: smaller;
+    opacity: 0.7;
+}
+
+.slidecontent {
+    width: 95% !important;
+   
+}
+
+.fool-width {
+    width: 100%;
+    min-width: 100%;
+    
+
+}
+
+ion-select {
+    
+    color: var(--ion-color-primary);
+  
+  }
+
+
